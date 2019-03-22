@@ -5,7 +5,7 @@ import cherrypy
 class ROIrate(object):
 
     p = Path("./images")
-    images = [x for x in p.iterdir()]
+    images = [str(x) for x in p.iterdir()]
     num_images = len(images)
     r = list(range(num_images))
     random.shuffle(r)
@@ -29,9 +29,7 @@ class ROIrate(object):
         return """<html>
                   <head></head>
                   <body>
-                    <img src="
-                    """ + str(img) + """
-                    ">
+                    <img src="{img}" alt="ROI" width="512" height="512">
                     <form method="get" action="score" >
                       <button type="submit" value=1 name="gleason" onclick="score">1</button>
                       <button type="submit" value=2 name="gleason">2</button>
@@ -46,7 +44,7 @@ class ROIrate(object):
                         <button type="submit" value=1 name="write">Save</button>
                     </form>
                   </body>
-                </html>"""
+                </html>""".format(img = img)
 
     @cherrypy.expose
     def rewind(self, rewind = 0):
