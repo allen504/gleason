@@ -54,6 +54,8 @@ class ROIrate(object):
             self.counter -= 1
             del self.rating[str(self.images[self.r[self.counter]])]
             return self.index()
+        else:
+            return self.index()
 
     @cherrypy.expose
     def score(self, gleason = 0):
@@ -68,11 +70,15 @@ class ROIrate(object):
             with open('scores.csv', 'w') as file:
                 for key in self.rating.keys():
                     file.write("%s, %s\n" % (key, self.rating[key]))
+        if self.counter < self.num_images:
+                return self.show_img(self.images[self.r[self.counter]])
+        else:
+            return """<html>
+                            <head></head>
+                            <body>
+                                <p>No more images<p>
+                            </body>
+                    </html>"""
 
 if __name__ == "__main__":
     cherrypy.quickstart(ROIrate())
-
-#TO DO:
-#implement going back to previous image
-#keep track of users
-#how to interface with girder
