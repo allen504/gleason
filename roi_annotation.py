@@ -7,8 +7,6 @@ class ROIrate(object):
 
     p = Path(".\images")
     images = [str(x) for x in p.iterdir()]
-    for i in images:
-        print(i)
     num_images = len(images)
     r = list(range(num_images))
     random.shuffle(r)
@@ -88,5 +86,5 @@ if __name__ == "__main__":
                             'server.socket_port': 80, })
 
     conf = {'/images': {'tools.staticdir.on': True,
-                        'tools.staticdir.dir':  os.path.abspath("/images")}}
+                        'tools.staticdir.dir':  os.path.abspath("./images")}}
     cherrypy.quickstart(ROIrate(),"/" ,config=conf)
