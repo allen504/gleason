@@ -1,5 +1,5 @@
-# gleason
-Tool for annotating regions of interest (ROI's) in prostate cancer biopsies, each ROI can be rated with a gleason score from 1-5. Pressing a numbered button will rate the currently displayed ROI with that number. The "<-back" button erases the score of the last seen image and displays the image again to be re-rated. The "save" button writes all the scored images to a csv called "Scores.csv", which holds (image filename, gleason rating) pairs. The scores will also automatically be written to the file after the user has rated all picures in the "./images" directory.
+# roi_annotation.py
+Tool for annotating regions of interest (ROI's) in prostate cancer biopsy images, each ROI can be rated with a gleason score from 1-5. Pressing a numbered button will rate the currently displayed ROI with that number. The "<-back" button erases the score of the last seen image and displays the image again to be re-rated. The "save" button writes all the scored images to a csv called "Scores.csv", which holds (image filename, gleason rating) pairs. The scores will also automatically be written to the file after the user has rated all picures in the "./images" directory.
 
 # to start:
 1. Make sure roi_annotation.py is is in the same directory as the "./images" directory (not inside the "./images" directory!)
