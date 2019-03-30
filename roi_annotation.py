@@ -1,11 +1,14 @@
 import random
 from pathlib import Path
 import cherrypy
+import os.path
 
 class ROIrate(object):
 
-    p = Path("./images")
+    p = Path(".\images")
     images = [str(x) for x in p.iterdir()]
+    for i in images:
+        print(i)
     num_images = len(images)
     r = list(range(num_images))
     random.shuffle(r)
@@ -29,7 +32,7 @@ class ROIrate(object):
         return """<html>
                   <head></head>
                   <body>
-                    <img src="{img}" alt="ROI" width="512" height="512">
+                    <img src={img} alt="ROI" width="512" height="512">
                     <form method="get" action="score" >
                       <button type="submit" value=1 name="gleason" onclick="score">1</button>
                       <button type="submit" value=2 name="gleason">2</button>
@@ -67,7 +70,7 @@ class ROIrate(object):
         if write == "1":
             with open('scores.csv', 'w') as file:
                 for key in self.rating.keys():
-                    file.write("%s, %s\n" % (key, self.rating[key]))
+                    file.write("%s, %s\n" % (key[7:], self.rating[key]))
         if self.counter < self.num_images:
                 return self.show_img(self.images[self.r[self.counter]])
         else:
@@ -79,4 +82,11 @@ class ROIrate(object):
                     </html>"""
 
 if __name__ == "__main__":
-    cherrypy.quickstart(ROIrate())
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Set up site-wide config first so we get a log if errors occur.
+    cherrypy.config.update({'server.socket_host': '127.0.0.1',
+                            'server.socket_port': 80, })
+
+    conf = {'/images': {'tools.staticdir.on': True,
+                        'tools.staticdir.dir':  os.path.abspath("/images")}}
+    cherrypy.quickstart(ROIrate(),"/" ,config=conf)
