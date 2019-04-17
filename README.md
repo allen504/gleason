@@ -1,5 +1,5 @@
 # roi_annotation.py
-Tool for annotating regions of interest (ROI's) in prostate cancer biopsy images, each ROI can be rated with a gleason score from 1-5. Pressing a numbered button will rate the currently displayed ROI with that number. The ">" button displays the next image to be rated, and the "<" button returns to the previous image. The left and right arrowkeys and numbers on the keyboard can be used to traverse and rate the images. The users' is saved to a csv.
+Tool for annotating regions of interest (ROI's) in prostate cancer biopsy images, each ROI can be rated with a gleason score from 1-5. Pressing a numbered button will rate the currently displayed ROI with that number. The ">" button displays the next image to be rated, and the "<" button returns to the previous image. The left and right arrowkeys and numbers on the keyboard can be used to traverse and rate the images. The users' data is saved to a csv.
 
 # to start:
 1. The root directory should be called "roi_annotation", inside this directory place roi_annotation.py and another directory called "public". Inside the public directory place 3 more directories: "images","js",and "css". Place images to be rated in the images directory, "style.css" in the css directory, and "keys.js" in the js directory.
