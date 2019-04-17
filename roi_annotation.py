@@ -74,7 +74,7 @@ class ROIrate(object):
         else:
             x = str(self.images[self.r[self.counter]])
             self.rating[x] = gleason
-            self.write_scores(str(self.user)+"_scores.csv")
+            self.write_scores(str(self.user)+"_batch_"+str(self.batch)+".csv")
             return self.index()
 
     @cherrypy.expose
